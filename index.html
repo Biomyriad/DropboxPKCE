@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Dropbox JavaScript SDK</title>
+    <title>Dropbox Login</title>
     <link rel="stylesheet" href="styles.css">
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script> -->
@@ -11,25 +11,19 @@
 </head>
 
 <body>
-
-
     <!-- Example description and UI -->
     <section class="container main" style="color: white;">
-        <p>This example shows how to use PKCE in the browser</p>
         <div id="pre-auth-section" style="display:block;">
             <button onClick="listFiles()">doAuth</button>
-            <button onClick="tst()">StartPage</button>
+            <button onClick="">StartPage</button>
             <button onClick="localStorage.clear()">refresh test</button>
-            <p class="info">Once authenticated, it will use the access token to list the files in your root directory.</p>
             <hr><hr>
         </div>
 
         <div id="authed-section" style="display:block;">
-            <p>You have successfully authenticated. Below are the contents of your root directory. They were fetched using the SDK and access token.</p>
             <ul id="files"></ul>
         </div>
     </section>
-
 
     <script>
         var dbx = new DbApi()
@@ -51,7 +45,7 @@
         }
         
     </script>
-    
+
 </body>
 
 </html>
