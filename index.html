@@ -4,34 +4,14 @@
 <head>
     <title>Dropbox JavaScript SDK</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script>
-    <script src="
-https://cdn.jsdelivr.net/npm/dropbox@10.34.0/dist/Dropbox-sdk.min.js
-"></script>
-    <script src="utils.js"></script>
-    <script sc="dropbox.js"></script>
-    <script type="module" src="dbApi.js" defer></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/dropbox@10.34.0/dist/Dropbox-sdk.min.js"></script>
+    <script src="dbApi.js"></script>
 </head>
 
 <body>
-    <!-- Example layout boilerplate -->
-    <header class="page-header">
-        <div class="container">
-            <nav>
-                <a href="/">
-                    <h1>
-                        <img src="https://cfl.dropboxstatic.com/static/images/brand/logotype_white-vflRG5Zd8.svg" class="logo" /> 
-                        JavaScript SDK Examples
-                    </h1>
-                </a>
-                <a href="https://github.com/dropbox/dropbox-sdk-js/tree/main/examples/javascript" class="view-source">View Source</a>
-            </nav>
-            <h2 class="code">
-                <a href="/">examples</a> / PKCE browser
-            </h2>
-        </div>
-    </header>
+
 
     <!-- Example description and UI -->
     <section class="container main" style="color: white;">
@@ -39,7 +19,7 @@ https://cdn.jsdelivr.net/npm/dropbox@10.34.0/dist/Dropbox-sdk.min.js
         <div id="pre-auth-section" style="display:block;">
             <button onClick="listFiles()">doAuth</button>
             <button onClick="tst()">StartPage</button>
-            <button onClick="">refresh test</button>
+            <button onClick="localStorage.clear()">refresh test</button>
             <p class="info">Once authenticated, it will use the access token to list the files in your root directory.</p>
             <hr><hr>
         </div>
@@ -50,13 +30,10 @@ https://cdn.jsdelivr.net/npm/dropbox@10.34.0/dist/Dropbox-sdk.min.js
         </div>
     </section>
 
-    <!-- Scripts to run example -->
+
     <script>
-       function tst( ) {
-         var dba = new DbApi()
-       }
-        
-    
+        var dbx = new DbApi()
+
         // Render a list of items to #files
         function renderItems(items) {
             var filesContainer = document.getElementById('files');
@@ -68,13 +45,13 @@ https://cdn.jsdelivr.net/npm/dropbox@10.34.0/dist/Dropbox-sdk.min.js
         }
 
         function listFiles() {
-      
-          var r = dbx.filesListFolder({path: ''})
-          renderItems(r)
+            var r = dbx.dbx.filesListFolder({path: ''}) // returns promise
+            r.then( text => {renderItems(text.result.entries); console.log(text.result.entries)})
+            .catch(e => console.log(e))
         }
-
         
     </script>
+    
 </body>
 
 </html>
